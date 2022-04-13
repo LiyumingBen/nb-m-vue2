@@ -1,0 +1,234 @@
+@import './var.less';
+
+:root {
+  --nb-button-mini-height: @button-mini-height;
+  --nb-button-mini-padding: @button-mini-padding;
+  --nb-button-mini-font-size: @button-mini-font-size;
+  --nb-button-small-height: @button-small-height;
+  --nb-button-small-padding: @button-small-padding;
+  --nb-button-small-font-size: @button-small-font-size;
+  --nb-button-normal-padding: @button-normal-padding;
+  --nb-button-normal-font-size: @button-normal-font-size;
+  --nb-button-large-height: @button-large-height;
+  --nb-button-default-height: @button-default-height;
+  --nb-button-default-line-height: @button-default-line-height;
+  --nb-button-default-font-size: @button-default-font-size;
+  --nb-button-default-color: @button-default-color;
+  --nb-button-default-background-color: @button-default-background-color;
+  --nb-button-default-border-color: @button-default-border-color;
+  --nb-button-primary-color: @button-primary-color;
+  --nb-button-primary-background-color: @button-primary-background-color;
+  --nb-button-primary-border-color: @button-primary-border-color;
+  --nb-button-success-color: @button-success-color;
+  --nb-button-success-background-color: @button-success-background-color;
+  --nb-button-success-border-color: @button-success-border-color;
+  --nb-button-danger-color: @button-danger-color;
+  --nb-button-danger-background-color: @button-danger-background-color;
+  --nb-button-danger-border-color: @button-danger-border-color;
+  --nb-button-warning-color: @button-warning-color;
+  --nb-button-warning-background-color: @button-warning-background-color;
+  --nb-button-warning-border-color: @button-warning-border-color;
+  --nb-button-border-width: @button-border-width;
+  --nb-button-border-radius: @button-border-radius;
+  --nb-button-round-border-radius: @button-round-border-radius;
+  --nb-button-plain-background-color: @button-plain-background-color;
+  --nb-button-disabled-opacity: @button-disabled-opacity;
+  --nb-button-icon-size: @button-icon-size;
+  --nb-button-loading-icon-size: @button-loading-icon-size;
+}
+
+.nb-button {
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  height: var(--nb-button-default-height);
+  margin: 0;
+  padding: 0;
+  font-size: var(--nb-button-default-font-size);
+  line-height: var(--nb-button-default-line-height);
+  text-align: center;
+  border-radius: var(--nb-button-border-radius);
+  cursor: pointer;
+  transition: opacity var(--nb-animation-duration-fast);
+  -webkit-appearance: none;
+
+  &::before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background: var(--nb-black);
+    border: inherit;
+    border-color: var(--nb-black);
+    border-radius: inherit; /* inherit parent's border radius */
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    content: ' ';
+  }
+
+  &:active::before {
+    opacity: 0.1;
+  }
+
+  &--loading,
+  &--disabled {
+    &::before {
+      display: none;
+    }
+  }
+
+  &--default {
+    color: var(--nb-button-default-color);
+    background: var(--nb-button-default-background-color);
+    border: var(--nb-button-border-width) solid
+      var(--nb-button-default-border-color);
+  }
+
+  &--primary {
+    color: var(--nb-button-primary-color);
+    background: var(--nb-button-primary-background-color);
+    border: var(--nb-button-border-width) solid
+      var(--nb-button-primary-border-color);
+  }
+
+  &--success {
+    color: var(--nb-button-success-color);
+    background: var(--nb-button-success-background-color);
+    border: var(--nb-button-border-width) solid
+      var(--nb-button-success-border-color);
+  }
+
+  &--danger {
+    color: var(--nb-button-danger-color);
+    background: var(--nb-button-danger-background-color);
+    border: var(--nb-button-border-width) solid
+      var(--nb-button-danger-border-color);
+  }
+
+  &--warning {
+    color: var(--nb-button-warning-color);
+    background: var(--nb-button-warning-background-color);
+    border: var(--nb-button-border-width) solid
+      var(--nb-button-warning-border-color);
+  }
+
+  &--plain {
+    background: var(--nb-button-plain-background-color);
+
+    &.nb-button--primary {
+      color: var(--nb-button-primary-background-color);
+    }
+
+    &.nb-button--success {
+      color: var(--nb-button-success-background-color);
+    }
+
+    &.nb-button--danger {
+      color: var(--nb-button-danger-background-color);
+    }
+
+    &.nb-button--warning {
+      color: var(--nb-button-warning-background-color);
+    }
+  }
+
+  &--large {
+    width: 100%;
+    height: var(--nb-button-large-height);
+  }
+
+  &--normal {
+    padding: var(--nb-button-normal-padding);
+    font-size: var(--nb-button-normal-font-size);
+  }
+
+  &--small {
+    height: var(--nb-button-small-height);
+    padding: var(--nb-button-small-padding);
+    font-size: var(--nb-button-small-font-size);
+  }
+
+  &__loading {
+    color: inherit;
+    font-size: inherit;
+
+    .nb-loading__spinner {
+      color: currentColor;
+      width: var(--nb-button-loading-icon-size);
+      height: var(--nb-button-loading-icon-size);
+    }
+  }
+
+  &--mini {
+    height: var(--nb-button-mini-height);
+    padding: var(--nb-button-mini-padding);
+    font-size: var(--nb-button-mini-font-size);
+
+    & + .nb-button--mini {
+      margin-left: var(--nb-padding-base);
+    }
+  }
+
+  &--block {
+    display: block;
+    width: 100%;
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+    opacity: var(--nb-button-disabled-opacity);
+  }
+
+  &--loading {
+    cursor: default;
+  }
+
+  &--round {
+    border-radius: var(--nb-button-round-border-radius);
+  }
+
+  &--square {
+    border-radius: 0;
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+
+    &::before {
+      content: ' ';
+    }
+  }
+
+  &__icon {
+    font-size: var(--nb-button-icon-size);
+    line-height: inherit;
+  }
+
+  &__icon + &__text,
+  &__loading + &__text,
+  &__text + &__icon,
+  &__text + &__loading {
+    margin-left: var(--nb-padding-base);
+  }
+
+  &--hairline {
+    border-width: 0;
+
+    &::after {
+      border-color: inherit;
+      border-radius: calc(var(--nb-button-border-radius) * 2);
+    }
+
+    &.nb-button--round::after {
+      border-radius: var(--nb-button-round-border-radius);
+    }
+
+    &.nb-button--square::after {
+      border-radius: 0;
+    }
+  }
+}
